@@ -1,6 +1,6 @@
 # UFSCAR-CC-So-PMD2025-Grupo05
 
-Arthur Naoto Nitto
+770988 - Arthur Naoto Nitto
 
 802640 - Beatriz Patricio Santos
 
@@ -16,7 +16,7 @@ O objetivo deste projeto é desenvolver uma aplicação de recomendação de fil
 Será utilizado para o processamento massivo dos dados pois é uma ferramenta poderosa para realizar transformações, limpezas e junções de grandes volumes de dados de forma eficiente, portanto será importante para a etapa de preparação dos dados.
 
 - **Neo4j**: <br>
-Será utilizado para modelar os dados em grafos, o que é ideal para mapear as relações entre os filmes, músicas e seus atributos. Ele permitirá consultas complexas e rápidas, o que é essencial para a aplicação de recomendação.
+Será utilizado para modelar os dados em grafos, o que é ideal para mapear as relações entre os filmes, músicas e seus atributos, diferentemente de outros modelos (MongoDB possui dificuldade em mapear relacionamentos e em SQL as operações de JOIN são custosas). Ele também oferece suporte para um grande volume de dados e oferece consultas complexas e rápidas, o que é essencial para a aplicação de recomendação.
 
 ## Fontes de Dados
 - **Spotify Dataset**: [Link para o dataset](https://www.kaggle.com/datasets/devdope/900k-spotify) <br>
@@ -24,8 +24,6 @@ Será utilizado para modelar os dados em grafos, o que é ideal para mapear as r
 - **API Movie Theme Song**: [Link para a API](https://github.com/atlexis/movieThemeSongDatabase?tab=readme-ov-file) <br>
   Esta API fornece informações sobre músicas tema de filmes. Inclui dados como o nome do filme, ano de lançamento, título da música tema, artista, entre outros.
 Utilização: Utilizaremos esta API para relacionar as músicas com os filmes em que elas apareceram. Uma informação importante que essa API retorna é o código da música no Spotify, com ele podemos obter um link direto para a música na plataforma. Também podemos obter o código IMDB do filme.
-- **Movies Soundtracks**: [Link para o dataset](https://www.kaggle.com/datasets/ravineesh/soundtracks-of-top-250-imdb-movies-and-tv-series) <br>
-  Este dataset contém informações sobre trilhas sonoras de filmes e séries do IMDb Top 250. Inclui dados como o nome do filme ou série, ano de lançamento, título da música, artista, entre outros. Utilizaremos este dataset de maneira complementar para obter informações sobre as trilhas sonoras de filmes e séries populares e estabelecer a relação entre os dados do Spotify.
 
 ## Fluxograma do Projeto
 
@@ -33,7 +31,6 @@ Utilização: Utilizaremos esta API para relacionar as músicas com os filmes em
 graph TD
     A[Fontes de Dados] -->|Spotify Dataset| B[Apache Spark]
     A -->|API Movie Theme Song| B
-    A -->|Movies Soundtracks| B
     B -->|Processamento e Limpeza| C[Dados Processados]
     C -->|Modelagem em Grafos| D[Neo4j]
     D --> E[Consultas e Recomendações]
