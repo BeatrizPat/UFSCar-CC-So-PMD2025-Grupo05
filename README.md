@@ -8,7 +8,7 @@
 
 ---
 
-O objetivo deste projeto é desenvolver uma aplicação de recomendação de filmes e músicas baseada na relação entre eles. A aplicação será capaz de recomendar músicas relacionadas a um filme específico e vice-versa. Para isso, utilizaremos três bases de dados que contêm informações sobre músicas do Spotify, trilhas sonoras de filmes e séries, e temas de filmes.
+O objetivo deste projeto é desenvolver uma aplicação de recomendação de filmes e músicas, tanto separadamente quanto o relacionamento entre ambos. A aplicação será capaz de recomendar músicas relacionadas a um filme específico e vice-versa. Para isso, utilizaremos duas bases de dados que contêm informações sobre músicas do Spotify e informações de filmes.
 
 ## Tecnologias Escolhidas
 
