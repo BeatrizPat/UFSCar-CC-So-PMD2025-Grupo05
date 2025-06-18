@@ -25,10 +25,9 @@ Será utilizado para modelar os dados em grafos, o que é ideal para mapear as r
 
 ## Fontes de Dados
 - **Spotify Dataset**: [Link para o dataset](https://www.kaggle.com/datasets/devdope/900k-spotify) <br>
-  Este dataset contém informações sobre aproximadamente 900 mil músicas disponíveis no Spotify e contém atributos como nome da música, artista, álbum, gênero, emoção, duração, entre outros. Utilizaremos para obter informações detalhadas sobre as músicas e suas características.
-- **API Movie Theme Song**: [Link para a API](https://github.com/atlexis/movieThemeSongDatabase?tab=readme-ov-file) <br>
-  Esta API fornece informações sobre músicas tema de filmes. Inclui dados como o nome do filme, ano de lançamento, título da música tema, artista, entre outros.
-Utilização: Utilizaremos esta API para relacionar as músicas com os filmes em que elas apareceram. Uma informação importante que essa API retorna é o código da música no Spotify, com ele podemos obter um link direto para a música na plataforma. Também podemos obter o código IMDB do filme.
+  Este dataset contém informações sobre aproximadamente 900 mil músicas disponíveis no Spotify e contém atributos como nome da música, artista, álbum, gênero, emoção, duração, entre outros. Utilizaremos para obter informações detalhadas sobre as músicas e suas características e correlacionar com a outra fonte de dados.
+- **Full TMDB Movies Dataset 2024**: [Link para o dataset](https://www.kaggle.com/datasets/asaniczka/tmdb-movies-dataset-2023-930k-movies) <br>
+  Esse dataset contém informações sobre aproximadamente 1 milhão de filmes disponíveis no TMDB (Movies Database) e contém atributos como nome do filme, gêneros, popularidade, keywords, entre outros. Utilizaremos para obter informações detalhadas sobre os filmes e correlacionar com a outra fonte de dados.
 
 ## Fluxograma do Projeto
 
