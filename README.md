@@ -18,6 +18,11 @@ Será utilizado para o processamento massivo dos dados pois é uma ferramenta po
 - **Neo4j**: <br>
 Será utilizado para modelar os dados em grafos, o que é ideal para mapear as relações entre os filmes, músicas e seus atributos, diferentemente de outros modelos (MongoDB possui dificuldade em mapear relacionamentos e em SQL as operações de JOIN são custosas). Ele também oferece suporte para um grande volume de dados e oferece consultas complexas e rápidas, o que é essencial para a aplicação de recomendação.
 
+## Consultas Definidas
+1. Recomendação de músicas baseadas em um filme específico, utilizando atributos diversos (emoção, gênero, energia, positividade, acústica, instrumental, explicidade, etc) do dataset de música para correlacionar com atributos (gênero, explicidade)  do dataset de filmes.
+2. Recomendações de músicas similares, utilizando atributos diversos (emoção, gênero, explicidade) do dataset de músicas.
+3. Recomendações de filmes similares, utilizando atributos diversos (gênero, linguagem, explicidade) do dataset de filmes.
+
 ## Fontes de Dados
 - **Spotify Dataset**: [Link para o dataset](https://www.kaggle.com/datasets/devdope/900k-spotify) <br>
   Este dataset contém informações sobre aproximadamente 900 mil músicas disponíveis no Spotify e contém atributos como nome da música, artista, álbum, gênero, emoção, duração, entre outros. Utilizaremos para obter informações detalhadas sobre as músicas e suas características.
@@ -31,7 +36,7 @@ Utilização: Utilizaremos esta API para relacionar as músicas com os filmes em
 graph TD
     A[Fontes de Dados] -->|Spotify Dataset| B[Apache Spark]
     A -->|API Movie Theme Song| B
-    B -->|Processamento e Limpeza| C[Dados Processados]
+    B -->|Pré-processamento: Junções e Limpeza| C[Dados Processados]
     C -->|Modelagem em Grafos| D[Neo4j]
     D --> E[Consultas e Recomendações]
 ```
@@ -43,9 +48,4 @@ graph TD
 4. **Neo4j**: Os dados processados serão inseridos no Neo4j, onde serão modelados em grafos para mapear as relações entre filmes, músicas e seus atributos.
 5. **Consultas e Recomendações**: Realizar consultas e gerar recomendações de filmes e músicas baseadas nas relações mapeadas.
 
-## Consultas Definidas
-- Recomendação de músicas baseadas em um filme específico.
-- Recomendação de filmes baseados em uma música específica.
-- Exploração das relações entre filmes e músicas, como diretores, artistas, gêneros, emoção etc:
-    - Encontrar músicas que trazem uma emoção específica
-    - Encontrar filmes que possuem músicas de um artista específico
+
