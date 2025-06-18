@@ -36,7 +36,7 @@ Utilização: Utilizaremos esta API para relacionar as músicas com os filmes em
 graph TD
     A[Fontes de Dados] -->|Spotify Dataset| B[Apache Spark]
     A -->|API Movie Theme Song| B
-    B -->|Pré-processamento: Junções e Limpeza| C[Dados Processados]
+    B -->|Pré-processamento| C[Dados Processados]
     C -->|Modelagem em Grafos| D[Neo4j]
     D --> E[Consultas e Recomendações]
 ```
