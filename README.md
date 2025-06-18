@@ -19,7 +19,7 @@ Será utilizado para o processamento massivo dos dados pois é uma ferramenta po
 Será utilizado para modelar os dados em grafos, o que é ideal para mapear as relações entre os filmes, músicas e seus atributos, diferentemente de outros modelos (MongoDB possui dificuldade em mapear relacionamentos e em SQL as operações de JOIN são custosas). Ele também oferece suporte para um grande volume de dados e oferece consultas complexas e rápidas, o que é essencial para a aplicação de recomendação.
 
 ## Consultas Definidas
-1. Recomendação de músicas baseadas em um filme específico, utilizando atributos diversos (emoção, gênero, energia, positividade, acústica, instrumental, explicidade, etc) do dataset de música para correlacionar com atributos (gênero, explicidade)  do dataset de filmes.
+1. Recomendação de músicas baseadas em um filme específico, utilizando atributos diversos (emoção, gênero, positividade) do dataset de música para correlacionar com atributos (gênero, explicidade)  do dataset de filmes.
 2. Recomendações de músicas similares, utilizando atributos diversos (emoção, gênero, explicidade) do dataset de músicas.
 3. Recomendações de filmes similares, utilizando atributos diversos (gênero, linguagem, explicidade) do dataset de filmes.
 
