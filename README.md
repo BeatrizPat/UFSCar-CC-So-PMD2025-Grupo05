@@ -7,7 +7,7 @@
 801695 - Murillo Justino dos Santos
 
 ---
-
+## Objetivo
 O objetivo deste projeto é desenvolver uma aplicação de recomendação de filmes e músicas, tanto separadamente quanto o relacionamento entre ambos. A aplicação será capaz de recomendar músicas relacionadas a um filme específico e vice-versa. Para isso, utilizaremos duas bases de dados que contêm informações sobre músicas do Spotify e informações de filmes.
 
 ## Tecnologias Escolhidas
