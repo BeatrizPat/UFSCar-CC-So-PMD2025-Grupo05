@@ -34,7 +34,7 @@ Será utilizado para modelar os dados em grafos, o que é ideal para mapear as r
 ```mermaid
 graph TD
     A[Fontes de Dados] -->|Spotify Dataset| B[Apache Spark]
-    A -->|API Movie Theme Song| B
+    A -->|Movies Dataset| B
     B -->|Pré-processamento| C[Dados Processados]
     C -->|Modelagem em Grafos| D[Neo4j]
     D --> E[Consultas e Recomendações]
