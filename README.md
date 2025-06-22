@@ -22,7 +22,7 @@ Será utilizado para modelar os dados em grafos, o que é ideal para mapear as r
 1. Recomendação de músicas baseadas em um filme específico, correlacionando o dataset de filmes e o dataset de trilhas sonoras (pelo nome do filme) com o dataset de músicas, para então recomendar músicas similares através dos atributos de músicas similares do dataset de músicas.
 2. Recomendações de músicas similares, utilizando atributos diversos (emoção, gênero, explicidade) do dataset de músicas.
 3. Recomendações de filmes similares, utilizando atributos diversos (gênero, linguagem, explicidade) do dataset de filmes.
-4. Encontrar músicas que tocam em filmes de uma produtora específica, usando atributo de produtora do dataset de filmes e os datasets de trilhas sonororas.
+4. Encontrar músicas que tocam em filmes de um diretor específico, usando atributo de diretor do dataset de filmes, atrelado ao datasets de trilhas sonororas.
 5. Ligar emoções à filmes específicos, utilizando a combinação do dataset de filmes e trilhas sonoras para atrelar o atributo emoções (do dataset de músicas) à filmes individuais.
 
 ## Fontes de Dados
