@@ -76,7 +76,7 @@ Para representar as relações entre os dados de filmes, músicas e trilhas sono
 A principal conexão entre filmes e músicas se dá por meio das trilhas sonoras. Essas trilhas funcionam como ponte entre os dois domínios:
 
 ```plaintext
-(N) Song ─[:soudtrack]→ (N) Song
+(N) Song ─[:soudtrack]→ (N) Movie
 ```
 
 Essa estrutura permite, por exemplo, consultar todas as músicas que fazem parte de um filme específico ou descobrir em quais filmes uma música aparece.
