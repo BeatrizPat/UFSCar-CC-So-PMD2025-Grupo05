@@ -1,4 +1,5 @@
 .ipynb_checkpoints/
 bkp/
 datasets/
+artifacts/
 *.jar
