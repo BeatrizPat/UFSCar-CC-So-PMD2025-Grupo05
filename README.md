@@ -42,7 +42,7 @@ graph TD
     A -->|Soundtrack Dataset| B
     B -->|Pré-processamento: Limpeza e Transformação| C[Dados Processados]
     C -->|Modelagem em Grafos| D[Neo4j]
-    D --> E[Consultas e Recomendações]
+    D -->|Resultados Consultas| B
 ```
 
 ## Descrição do Fluxograma
@@ -52,4 +52,92 @@ graph TD
 4. **Neo4j**: Os dados processados serão inseridos no Neo4j, onde serão modelados em grafos para mapear as relações entre filmes, músicas e seus atributos.
 5. **Consultas e Recomendações**: Realizar consultas e gerar recomendações de filmes e músicas baseadas nas relações mapeadas.
 
+---
+
+## Desenvolvimento
+
+Durante o desenvolvimento do projeto, a equipe seguiu um pipeline dividido em três etapas principais: **pré-processamento dos dados no Apache Spark**, **modelagem em grafo no Neo4j**, e **execução de consultas Cypher para recomendações**.
+
+Inicialmente, os três datasets foram importados e tratados utilizando Apache Spark. Foram realizadas operações de limpeza como remoção de campos nulos, padronização de nomes de filmes e músicas, e transformação de formatos de dados para permitir junções eficientes entre as bases. Também foi feita a extração somente das colunas relevantes para as consultas, como gênero, diretor, emoção e nome do artista.
+
+Para representar as relações entre os dados de filmes, músicas e trilhas sonoras, optamos por uma modelagem orientada a grafos no Neo4j. 
+Após o processamento, os dados foram inseridos diretamente no Neo4j através da conexão entre ele e o Databricks. 
+
+
+### Modelagem em Grafo e Relacionamentos
+
+Para representar as relações entre os dados de filmes, músicas e trilhas sonoras, criamos algumas relações entre os seguintes nós (`N`) e as arestas (`r`):
+
+#### 1. Relacionar músicas a filmes (e vice-versa)
+
+A principal conexão entre filmes e músicas se dá por meio das trilhas sonoras. Essas trilhas funcionam como ponte entre os dois domínios:
+```mermaid
+flowchart LR
+    Música((Música)) -->|TRILHA_SONORA| Filme((Filme))
+```
+Essa estrutura permite, por exemplo, consultar todas as músicas que fazem parte de um filme específico ou descobrir em quais filmes uma música aparece.
+
+
+#### 2. Similaridade entre músicas e entre filmes
+
+Para permitir recomendações baseadas em similaridade, estabelecemos conexões entre entidades do mesmo tipo com base em atributos compartilhados.
+
+**Filmes similares:**
+
+Filmes são conectados entre si quando compartilham características como gênero ou diretor:
+
+```mermaid
+flowchart LR
+    Filme((Filme)) -->|É DO GÊNERO| Gênero((Gênero))
+```
+```mermaid
+flowchart LR
+    Diretor((Diretor)) -->|DIRIGIU| Filme((Filme))
+```
+**Músicas similares:**
+
+Músicas são conectadas com base em atributos como emoção, artista, gênero ou similaridade a partir dos campos `similar_song_1`, `similar_song_2`, e `similar_song_3`:
+
+```mermaid
+flowchart LR
+    Música((Música)) -->|DESPERTA| Emoção((Emoção))
+```
+```mermaid
+flowchart LR
+    Música((Música)) -->|INTERPRETADA_POR| Artista((Artista))
+```
+```mermaid
+flowchart LR
+    Música((Música)) -->|SIMILAR| Música((Música))
+```
+---
+
+#### 3. Músicas presentes em filmes de um diretor específico
+
+A modelagem também permite explorar conexões indiretas. Por exemplo, para encontrar músicas que tocam em filmes dirigidos por um determinado diretor:
+```mermaid
+flowchart LR
+    Diretor((Diretor)) -->|DIRIGIU| Filme((Filme)) -->|TRILHA_SONORA| Música((Música))
+```
+---
+
+## Resultados
+
+Os resultados obtidos demonstraram que há uma grande vantagem em conectar as informações por meio de um modelo em grafo para recomendações. Essa representação possibilita consultas como "Quais músicas estão presentes nos filmes do Christopher Nolan?" ou "Quais são as emoções mais associadas aos filmes de determinado diretor?" COMPLETAR
+
+Essa modelagem em grafo mostrou-se altamente flexível e eficiente, permitindo consultas complexas com baixo custo computacional, o que seria mais custoso e menos intuitivo em bancos relacionais.
+
+Detalhar algumas consultas...
+
+---
+
+## Dificuldades
+
+Durante o desenvolvimento, a equipe enfrentou alguns desafios relevantes:
+
+Encontramos limitações no uso da edição gratuita pois ela não permite a persistência de bibliotecas entre sessões, o que exigiu a reinstalação do conector Spark–Neo4j a cada criação de novo cluster e apresentou inconsistência na disponibilidade de algumas versões desse conector, então passamos a utilizar o Free Edition.
+Houve divergências entre nomes de filmes nas trilhas sonoras e nos metadados dos filmes, o que exigiu padronização manual e uso de técnicas de normalização textual.
+O pré-processamento dos dados também foi uma etapa trabalhosa, pois lidamos com 3 datasets diferentes...COMPLETAR
+
+---
 
