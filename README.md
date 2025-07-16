@@ -117,7 +117,8 @@ flowchart LR
 A modelagem também permite explorar conexões indiretas. Por exemplo, para encontrar músicas que tocam em filmes dirigidos por um determinado diretor:
 ```mermaid
 flowchart LR
-    Diretor((Diretor)) -->|DIRIGIU| Filme((Filme)) -->|TRILHA_SONORA| Música((Música))
+    Filme((Filme)) -->|DIRIGIDO POR| Diretor((Diretor))
+    Filme -->|TRILHA_SONORA| Música((Música)) 
 ```
 ---
 
