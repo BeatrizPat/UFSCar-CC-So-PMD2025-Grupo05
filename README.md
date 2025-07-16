@@ -123,11 +123,11 @@ flowchart LR
 
 ## Resultados
 
-Os resultados obtidos demonstraram que há uma grande vantagem em conectar as informações por meio de um modelo em grafo para recomendações. Essa representação possibilita consultas como "Quais músicas estão presentes nos filmes do Christopher Nolan?" ou "Quais são as emoções mais associadas aos filmes de determinado diretor?" COMPLETAR
+Os resultados obtidos demonstraram que há uma grande vantagem em conectar as informações por meio de um modelo em grafo para recomendações. Essa representação possibilita consultas como "Quais músicas estão presentes nos filmes do Christopher Nolan?", "Quais são as emoções mais associadas aos filmes de determinado diretor?" ou "Quais as músicas recomendadas com base no filme "The Wolf of Wall Street"?"
 
 Essa modelagem em grafo mostrou-se altamente flexível e eficiente, permitindo consultas complexas com baixo custo computacional, o que seria mais custoso e menos intuitivo em bancos relacionais.
 
-Detalhar algumas consultas...
+Nosso esquema resultou em 123K nós e 36MM de relacionamentos, o que possibilitou a construção de recomendações mais ricas, como sugerir músicas com base em diretores, gêneros cinematográficos, emoções predominantes ou até mesmo por similaridade entre trilhas sonoras. Além disso, foi possível identificar artistas frequentemente associados a determinados estilos de filmes ou diretores.
 
 ---
 
@@ -136,8 +136,8 @@ Detalhar algumas consultas...
 Durante o desenvolvimento, a equipe enfrentou alguns desafios relevantes:
 
 Encontramos limitações no uso da edição gratuita pois ela não permite a persistência de bibliotecas entre sessões, o que exigiu a reinstalação do conector Spark–Neo4j a cada criação de novo cluster e apresentou inconsistência na disponibilidade de algumas versões desse conector, então passamos a utilizar o Free Edition.
+Após alguns testes, percebemos que a limitação de armazenamento da versão Free impactava nas nossas consultas, pois para ficar dentro do limite de 200 mil nós e relações, tivemos que reduzir nosso dataset, e consequentemente as recomendações eram incompletas. Como alternativa na reta final do projeto, utilizamos o Free-Trial de 14 dias para realizar as consultas finais com o dataset completo e validar os resultados.
 Houve divergências entre nomes de filmes nas trilhas sonoras e nos metadados dos filmes, o que exigiu padronização manual e uso de técnicas de normalização textual.
-O pré-processamento dos dados também foi uma etapa trabalhosa, pois lidamos com 3 datasets diferentes...COMPLETAR
-
+O pré-processamento dos dados também foi uma etapa trabalhosa, pois lidamos com 3 datasets diferentes (trilhas sonoras, metadados de filmes e de músicas), cada um com estruturas distintas portanto foi necessário tratamento de dados ausentes e padronização.
 ---
 
