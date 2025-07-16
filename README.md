@@ -140,6 +140,7 @@ Após alguns testes, percebemos que a limitação de armazenamento da versão Fr
 
 Não conseguimos conectar o Databricks Free Edition com o Neo4J por causa das limitações e falta de suporte do primeiro. Por esse motivo, foi-se usado o Apache Spark localmente e o Neo4J via Cloud. 
 No entanto, a versão gratuita do Neo4J, enquanto teoricamente suporta dados quase ilimitados, na prática não conseguimos inserir 200 mil dados quando o site travou e o progresso de horas foi perdido. Dessa forma, limitamos propositalmente a quantidade de nós e relações na plataforma para conseguirmos fazer o uso do mesmo.
+
 O pré-processamento dos dados também foi uma etapa trabalhosa, pois lidamos com 3 datasets diferentes (trilhas sonoras, metadados de filmes e de músicas), cada um com estruturas distintas. Portanto, foi necessário tratamento de dados ausentes e padronização cautelosa para minimizar conflitos, especialmente entre nomes de filmes (em trilhas sonoras) e metadados dos filmes, onde foi usado padronização manual e técnicas de normalização textual.
 
 ---
