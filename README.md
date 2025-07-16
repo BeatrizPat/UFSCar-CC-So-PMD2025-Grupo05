@@ -137,7 +137,6 @@ Nosso esquema resultou em 62K nós e 105K de relacionamentos, o que possibilitou
 Durante o desenvolvimento, a equipe enfrentou alguns desafios relevantes:
 
 Encontramos limitações no uso da edição gratuita pois ela não permite a persistência de bibliotecas entre sessões, o que exigiu a reinstalação do conector Spark–Neo4j a cada criação de novo cluster e apresentou inconsistência na disponibilidade de algumas versões desse conector, então passamos a utilizar o Free Edition.
-Após alguns testes, percebemos que a limitação de armazenamento da versão Free impactava nas nossas consultas, pois para ficar dentro do limite de 200 mil nós e relações, tivemos que reduzir nosso dataset, e consequentemente as recomendações eram incompletas. Como alternativa na reta final do projeto, utilizamos o Free-Trial de 14 dias para realizar as consultas finais com o dataset completo e validar os resultados.
 
 Não conseguimos conectar o Databricks Free Edition com o Neo4J por causa das limitações e falta de suporte do primeiro. Por esse motivo, foi-se usado o Apache Spark localmente e o Neo4J via Cloud. 
 No entanto, a versão gratuita do Neo4J, enquanto teoricamente suporta dados quase ilimitados, na prática não conseguimos inserir 200 mil dados quando o site travou e o progresso de horas foi perdido. Dessa forma, limitamos propositalmente a quantidade de nós e relações na plataforma para conseguirmos fazer o uso do mesmo.
