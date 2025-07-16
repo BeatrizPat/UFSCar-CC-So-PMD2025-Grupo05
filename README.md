@@ -125,7 +125,7 @@ flowchart LR
 
 Os resultados obtidos demonstraram que há uma grande vantagem em conectar as informações por meio de um modelo em grafo para recomendações. Essa representação possibilita consultas como "Quais músicas estão presentes nos filmes do Christopher Nolan?", "Quais são as emoções mais associadas aos filmes de determinado diretor?" ou "Quais as músicas recomendadas com base no filme "The Wolf of Wall Street"?"
 
-Essa modelagem em grafo mostrou-se altamente flexível e eficiente, permitindo consultas complexas com baixo custo computacional, o que seria mais custoso e menos intuitivo em bancos relacionais.
+Essa modelagem em grafo mostrou-se altamente flexível e eficiente, permitindo consultas complexas com baixo custo computacional, o que seria mais custoso e menos intuitivo em bancos relacionais. No entanto, foram encontrados desafios na parte da injeção de dados do Apache Spark para o Neo4J.
 
 Nosso esquema resultou em 62K nós e 105K de relacionamentos, o que possibilitou a construção de recomendações mais ricas, como sugerir músicas com base em diretores, gêneros cinematográficos, emoções predominantes ou até mesmo por similaridade entre trilhas sonoras. Além disso, foi possível identificar artistas frequentemente associados a determinados estilos de filmes ou diretores.
 
@@ -137,8 +137,10 @@ Durante o desenvolvimento, a equipe enfrentou alguns desafios relevantes:
 
 Encontramos limitações no uso da edição gratuita pois ela não permite a persistência de bibliotecas entre sessões, o que exigiu a reinstalação do conector Spark–Neo4j a cada criação de novo cluster e apresentou inconsistência na disponibilidade de algumas versões desse conector, então passamos a utilizar o Free Edition.
 Após alguns testes, percebemos que a limitação de armazenamento da versão Free impactava nas nossas consultas, pois para ficar dentro do limite de 200 mil nós e relações, tivemos que reduzir nosso dataset, e consequentemente as recomendações eram incompletas. Como alternativa na reta final do projeto, utilizamos o Free-Trial de 14 dias para realizar as consultas finais com o dataset completo e validar os resultados.
-Houve divergências entre nomes de filmes nas trilhas sonoras e nos metadados dos filmes, o que exigiu padronização manual e uso de técnicas de normalização textual.
-O pré-processamento dos dados também foi uma etapa trabalhosa, pois lidamos com 3 datasets diferentes (trilhas sonoras, metadados de filmes e de músicas), cada um com estruturas distintas portanto foi necessário tratamento de dados ausentes e padronização.
+
+Não conseguimos conectar o Databricks Free Edition com o Neo4J por causa das limitações e falta de suporte do primeiro. Por esse motivo, foi-se usado o Apache Spark localmente e o Neo4J via Cloud. 
+No entanto, a versão gratuita do Neo4J, enquanto teoricamente suporta dados quase ilimitados, na prática não conseguimos inserir 200 mil dados quando o site travou e o progresso de horas foi perdido. Dessa forma, limitamos propositalmente a quantidade de nós e relações na plataforma para conseguirmos fazer o uso do mesmo.
+O pré-processamento dos dados também foi uma etapa trabalhosa, pois lidamos com 3 datasets diferentes (trilhas sonoras, metadados de filmes e de músicas), cada um com estruturas distintas. Portanto, foi necessário tratamento de dados ausentes e padronização cautelosa para minimizar conflitos, especialmente entre nomes de filmes (em trilhas sonoras) e metadados dos filmes, onde foi usado padronização manual e técnicas de normalização textual.
 
 ---
 
