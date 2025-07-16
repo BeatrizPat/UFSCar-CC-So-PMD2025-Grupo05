@@ -19,11 +19,11 @@ Será utilizado para o processamento massivo dos dados pois é uma ferramenta po
 Será utilizado para modelar os dados em grafos, o que é ideal para mapear as relações entre os filmes, músicas e seus atributos, diferentemente de outros modelos (MongoDB possui dificuldade em mapear relacionamentos e em SQL as operações de JOIN são custosas). Ele também oferece suporte para um grande volume de dados e oferece consultas complexas e rápidas, o que é essencial para a aplicação de recomendação.
 
 ## Consultas Definidas
-1. Recomendação de músicas baseadas em um filme específico, correlacionando o dataset de filmes e o dataset de trilhas sonoras (pelo nome do filme) com o dataset de músicas, para então recomendar músicas similares através dos atributos de músicas similares do dataset de músicas.
-2. Recomendações de músicas similares, utilizando atributos diversos (emoção, gênero, explicidade) do dataset de músicas.
-3. Recomendações de filmes similares, utilizando atributos diversos (gênero, linguagem, explicidade) do dataset de filmes.
-4. Encontrar músicas que tocam em filmes de um diretor específico, usando atributo de diretor do dataset de filmes, atrelado ao datasets de trilhas sonororas.
-5. Ligar emoções à filmes específicos, utilizando a combinação do dataset de filmes e trilhas sonoras para atrelar o atributo emoções (do dataset de músicas) à filmes individuais.
+1. Recomendação de músicas baseadas em um filme específico, relacionando o dataset de filmes e o dataset de trilhas sonoras através do atributo (`titulo`) do filme, e com o atributo (`nome`) da música no dataset de músicas, para então acessar também músicas similares através dos atributos (`musicas recomendadas`) do dataset de músicas.
+2. Recomendações de músicas similares, utilizando o atributos (`emoção`) e (`músicas similares`) do dataset de músicas.
+3. Recomendações de filmes similares, utilizando os atributos (`gênero`) e (`diretor`) do dataset de filmes.
+4. Encontrar músicas que tocam em filmes de um diretor específico, usando atributo (`diretor`) do dataset de filmes, relacionando com o datasets de trilhas sonororas.
+5. Relaciona emoções à filmes específicos, utilizando a combinação do dataset de filmes e trilhas sonoras através do atributo (`emoção`) do dataset de músicas.
 
 ## Fontes de Dados
 - **Spotify Dataset**: [Link para o dataset](https://www.kaggle.com/datasets/devdope/900k-spotify) <br>
