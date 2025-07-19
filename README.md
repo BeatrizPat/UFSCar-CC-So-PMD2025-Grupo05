@@ -163,7 +163,10 @@ flowchart LR
 flowchart LR
     Música((Música)) -->|SIMILAR| Música((Música))
 ```
----
+
+Por fim, cheamos no seguinte esquema:
+
+<img width="786" height="498" alt="visualisation" src="https://github.com/user-attachments/assets/8744e8e5-b6bd-41e1-8fb8-1113b6ca607b" />
 
 #### 3. Músicas presentes em filmes de um diretor específico
 
