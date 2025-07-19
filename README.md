@@ -1,39 +1,53 @@
-# UFSCAR-CC-So-PMD2025-Grupo05
+# Projeto de Disciplina - Trilha Sonora de Filmes
 
-770988 - Arthur Naoto Nitto
+Universidade Federal de São Carlos
 
-802640 - Beatriz Patricio Santos
+Curso: Bacharelado em Ciência da Computação de Sorocaba
 
-801695 - Murillo Justino dos Santos
+Disciplina: Processamento Massivo de Dados
+
+Professora: Profa. Dra. Sahudy Montenegro González
 
 ---
-## Objetivo
-O objetivo deste projeto é desenvolver uma aplicação de recomendação de filmes e músicas, tanto separadamente quanto o relacionamento entre ambos. A aplicação será capaz de recomendar músicas relacionadas a um filme específico e vice-versa. Para isso, utilizaremos duas bases de dados que contêm informações sobre músicas do Spotify e informações de filmes.
 
-## Tecnologias Escolhidas
+### Grupo 5
+
+#### Integrantes:
+
+* 770988 - Arthur Naoto Nitto
+* 802640 - Beatriz Patricio Santos
+* 801695 - Murillo Justino dos Santos
+
+---
+
+### Resumo
+
+O objetivo deste projeto é desenvolver uma aplicação de recomendação de filmes e músicas, tanto separadamente quanto o relacionamento entre ambos. A aplicação será capaz de recomendar músicas relacionadas a um filme específico e vice-versa. Para isso, utilizaremos três bases de dados que contêm informações sobre músicas do Spotify, de filmes e de trlhas sonoras.
+
+### Tecnologias Escolhidas
 
 - **Apache Spark**: <br>
-Será utilizado para o processamento massivo dos dados pois é uma ferramenta poderosa para realizar transformações, limpezas e junções de grandes volumes de dados de forma eficiente, portanto será importante para a etapa de preparação dos dados.
+Será utilizado para o processamento massivo dos dados pois é uma ferramenta poderosa para realizar transformações, limpezas e junções de grandes volumes de dados de forma eficiente, portanto será importante para a etapa de preparação dos dados. Também possui um conector específico para **Neo4j**, ferramenta onde armazenaremos os dados.
 
 - **Neo4j**: <br>
 Será utilizado para modelar os dados em grafos, o que é ideal para mapear as relações entre os filmes, músicas e seus atributos, diferentemente de outros modelos (MongoDB possui dificuldade em mapear relacionamentos e em SQL as operações de JOIN são custosas). Ele também oferece suporte para um grande volume de dados e oferece consultas complexas e rápidas, o que é essencial para a aplicação de recomendação.
 
-## Consultas Definidas
+### Consultas Definidas
 1. Recomendação de músicas baseadas em um filme específico, relacionando o dataset de filmes e o dataset de trilhas sonoras através do atributo (`titulo`) do filme, e com o atributo (`nome`) da música no dataset de músicas, para então acessar também músicas similares através dos atributos (`musicas recomendadas`) do dataset de músicas.
 2. Recomendações de músicas similares, utilizando o atributos (`emoção`) e (`músicas similares`) do dataset de músicas.
 3. Recomendações de filmes similares, utilizando os atributos (`gênero`) e (`diretor`) do dataset de filmes.
 4. Encontrar músicas que tocam em filmes de um diretor específico, usando atributo (`diretor`) do dataset de filmes, relacionando com o datasets de trilhas sonororas.
 5. Relaciona emoções à filmes específicos, utilizando a combinação do dataset de filmes e trilhas sonoras através do atributo (`emoção`) do dataset de músicas.
 
-## Fontes de Dados
+### Fontes de Dados
 - **Spotify Dataset**: [Link para o dataset](https://www.kaggle.com/datasets/devdope/900k-spotify) <br>
   Este dataset contém informações sobre aproximadamente 900 mil músicas disponíveis no Spotify e contém atributos como nome da música, artista, álbum, gênero, emoção, duração, entre outros. Utilizaremos para obter informações detalhadas sobre as músicas e suas características e correlacionar com a outra fonte de dados.
 - **The Movies Dataset**: [Link para o dataset](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset?select=movies_metadata.csv) <br>
-  Esse dataset contém informações em 7 tabelas distintas, mas a tabela usada (movies_metadata) contém 45 mil filmes, com atributos como nome do filme, gênero, produtora, entre outros. Utilizaremos para obter informações detalhadas sobre filmes.
+  Esse dataset contém informações em 7 tabelas distintas, mas sua principal tabela (movies_metadata) contém 45 mil filmes, com atributos como nome do filme, gênero, produtora, entre outros. Utilizaremos a tabela citada para obter informações detalhadas sobre filmes, e utilizaremos a tabela credits para obter o nome do diretor de cada produção.
 - **Soundtracks of Top 250 IMDb Movies and TV Series**: [Link para o dataset](https://www.kaggle.com/datasets/ravineesh/soundtracks-of-top-250-imdb-movies-and-tv-series) <br>
   Esse dataset contém informações de 3132 trilhas sonoras de filmes e contém atributos como nome da trilha sonora, nome do filme, compositor, escritor, artista, entre outros. Utilizaremos para fazer uma conexão entre o dataset de filmes com o dataset de músicas.
 
-## Fluxograma do Projeto
+### Fluxograma do Projeto
 
 ```mermaid
 graph TD
@@ -45,7 +59,7 @@ graph TD
     D -->|Resultados Consultas| B
 ```
 
-## Descrição do Fluxograma
+### Descrição do Fluxograma
 1. **Fontes de Dados**: As três bases de dados serão utilizadas como fontes de informação.
 2. **Apache Spark**: O Spark será responsável por processar e limpar os dados, realizando transformações e junções necessárias.
 3. **Dados Processados**: Os dados processados pelo Spark serão preparados para a modelagem em grafos.
@@ -54,7 +68,7 @@ graph TD
 
 ---
 
-## Desenvolvimento
+### Desenvolvimento
 
 Durante o desenvolvimento do projeto, a equipe seguiu um pipeline dividido em três etapas principais: **pré-processamento dos dados no Apache Spark**, **modelagem em grafo no Neo4j**, e **execução de consultas Cypher para recomendações**.
 
@@ -122,7 +136,7 @@ flowchart LR
 ```
 ---
 
-## Resultados
+### Resultados
 
 Os resultados obtidos demonstraram que há uma grande vantagem em conectar as informações por meio de um modelo em grafo para recomendações. Essa representação possibilita consultas como "Quais músicas estão presentes nos filmes do Christopher Nolan?", "Quais são as emoções mais associadas aos filmes de determinado diretor?" ou "Quais as músicas recomendadas com base no filme "The Wolf of Wall Street"?"
 
@@ -132,7 +146,7 @@ Nosso esquema resultou em 62K nós e 105K de relacionamentos, o que possibilitou
 
 ---
 
-## Dificuldades
+### Dificuldades
 
 Durante o desenvolvimento, a equipe enfrentou alguns desafios relevantes:
 
