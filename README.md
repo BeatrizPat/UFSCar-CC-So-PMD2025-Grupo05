@@ -189,6 +189,8 @@ Essa modelagem em grafo mostrou-se altamente flexível e eficiente, permitindo c
 
 Nosso esquema resultou em 62K nós e 105K de relacionamentos, o que possibilitou a construção de recomendações mais ricas, como sugerir músicas com base em diretores, gêneros cinematográficos, emoções predominantes ou até mesmo por similaridade entre trilhas sonoras. Além disso, foi possível identificar artistas frequentemente associados a determinados estilos de filmes ou diretores.
 
+Os dados finais do projeto, armazenados pelo Neo4j, foram exportados em arquivo e podem ser encontrados em [neo4j-2025-07-19T15-10-26-0829621d.backup](https://drive.google.com/file/d/1c6nhAl9_zHekC8UW3z8xRzXZKJEZE5jy/view?usp=sharing).
+
 ---
 
 ### Dificuldades
