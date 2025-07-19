@@ -72,11 +72,50 @@ graph TD
 
 Durante o desenvolvimento do projeto, a equipe seguiu um pipeline dividido em três etapas principais: **pré-processamento dos dados no Apache Spark**, **modelagem em grafo no Neo4j**, e **execução de consultas Cypher para recomendações**.
 
-Inicialmente, os três datasets foram importados e tratados utilizando Apache Spark. Foram realizadas operações de limpeza como remoção de campos nulos, padronização de nomes de filmes e músicas, e transformação de formatos de dados para permitir junções eficientes entre as bases. Também foi feita a extração somente das colunas relevantes para as consultas, como gênero, diretor, emoção e nome do artista.
+### Pré-processamento dos dados
 
-Para representar as relações entre os dados de filmes, músicas e trilhas sonoras, optamos por uma modelagem orientada a grafos no Neo4j. 
-Após o processamento, os dados foram inseridos diretamente no Neo4j através da conexão entre ele e o Databricks. 
+Para pré-processar os dados, inicialmente dividimos os datasets entre os integrantes da equipe para cada um ficar responsável pelo tratamento inicial de um dataset específico, utilizando **Apache Spark** em todo o processo. Como o dataset de filmes é dividido em 7 tabelas, onde duas foram utilizadas no projeto, um dos integrantes se responsabilizou pelo tratamento e união dessas duas tabelas.
 
+Foram realizadas as seguintes operações de tratamento dos dados:
+
+* **No dataframe de Filmes**
+
+    * remoção de filmes sem título;
+    * remoção de linhas com data de lançamento mal formada;
+    * remoção de colunas que não interessam para o projeto;
+    * criação de coluna de identificador a partir da coluna de título;
+
+* **No dataframe de Músicas**
+
+    * remoção de colunas desnecessárias
+    * padronização do nome das colunas restantes
+    * criação de nova tabela com os dados tratados;
+    * criação de coluna de identificador a partir da coluna de nome;
+
+* **No dataframe de Trilhas Sonoras**
+
+    * substituição de valores _"NA"_ por `None` em todas as colunas;
+    * remoção de colunas não utilizadas e com vários valores nulos;
+    * remoção da marcação _"(uncredited)"_ na coluna `performed_by`;
+    * criação de colunas de identificadores das músicas e filmes;
+
+Para facilitar a inserção dos dados no Neo4j foram criados novos dataframes a partir dos dataframes resultantes após limpeza dos dados, são eles:
+
+* dataframe de **filmes** a partir do dataset **movies_metadata**;
+* dataframe de **diretores** a partir do dataset **movies_credits**;
+* dataframe de **gêneros** por **filme** a partir do dataset **movies_metadata**;
+* dataframe de **músicas** do spotify a partir do dataset **spotify_dataset**;
+* dataframe de **trilhas sonoras** a partir do dataset **sound_track_imdb_top_250_movie_tv_series**;
+* dataframe de **emoções** de músicas a partir do dataframe de músicas do spotify;
+* dataframe de **artistas** de músicas a partir do dataframe de músicas do spotify;
+
+Para representar as relações entre os dados de filmes, músicas e trilhas sonoras, optamos por uma modelagem orientada a grafos no Neo4j. Após o processamento, os dados foram inseridos diretamente no Neo4j através da conexão entre ele e o Apache Spark.
+
+Na descrição da limpeza dos dados pode-se ver que para cada dataset foram criadas novas colunas de identificadores para filmes e músicas. A criação dessa coluna foi necessária para relacionar as linhas dos três datasets, dado que eles não possuiam nehuma relação prévia. A maior relação entre eles se dava pelo nome dos filmes (nos datasets de filmes e trilha sonora) e das músicas (nos datasets de músicas do spotify e trilha sonora), porém, como o nome poderia variar em cada dataset, foi aplicado uma função sobre esses dados para criação das novas colunas de identificadores. Foi utilizado uma função para criar o identificador dos filmes e outra para criar o identificador das músicas, mas basicamente o que elas fazem é (as funções podem aplicar todos processo descritos a seguir ou apenas alguns deles):
+
+* remover caracteres não alfa numéricos;
+* substituir todas as letras por letras minúsculas;
+* remover espaços no início e o no fim do campo;
 
 ### Modelagem em Grafo e Relacionamentos
 
