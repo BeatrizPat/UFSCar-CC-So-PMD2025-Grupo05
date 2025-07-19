@@ -43,7 +43,7 @@ Será utilizado para modelar os dados em grafos, o que é ideal para mapear as r
 - **Spotify Dataset**: [Link para o dataset](https://www.kaggle.com/datasets/devdope/900k-spotify) <br>
   Este dataset contém informações sobre aproximadamente 900 mil músicas disponíveis no Spotify e contém atributos como nome da música, artista, álbum, gênero, emoção, duração, entre outros. Utilizaremos para obter informações detalhadas sobre as músicas e suas características e correlacionar com a outra fonte de dados.
 - **The Movies Dataset**: [Link para o dataset](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset?select=movies_metadata.csv) <br>
-  Esse dataset contém informações em 7 tabelas distintas, mas sua principal tabela (movies_metadata) contém 45 mil filmes, com atributos como nome do filme, gênero, produtora, entre outros. Utilizaremos a tabela citada para obter informações detalhadas sobre filmes, e utilizaremos a tabela credits para obter o nome do diretor de cada produção.
+  Esse dataset contém informações em 7 tabelas distintas, mas sua principal tabela (movies_metadata) contém 45 mil filmes, com atributos como nome do filme, gênero, produtora, entre outros. Utilizaremos a tabela citada para obter informações detalhadas sobre filmes, e utilizaremos a tabela credits para obter o nome do diretor de cada produção. <br> No notebook carregamos o dataset com as músicas já tratadas, esse dataset pode ser obtido a partir desse [link](https://drive.google.com/file/d/1SuAtN1idmKPwXzXTy0Ncppww_QvUTCh7/view?usp=sharing).
 - **Soundtracks of Top 250 IMDb Movies and TV Series**: [Link para o dataset](https://www.kaggle.com/datasets/ravineesh/soundtracks-of-top-250-imdb-movies-and-tv-series) <br>
   Esse dataset contém informações de 3132 trilhas sonoras de filmes e contém atributos como nome da trilha sonora, nome do filme, compositor, escritor, artista, entre outros. Utilizaremos para fazer uma conexão entre o dataset de filmes com o dataset de músicas.
 
@@ -116,6 +116,8 @@ Na descrição da limpeza dos dados pode-se ver que para cada dataset foram cria
 * remover caracteres não alfa numéricos;
 * substituir todas as letras por letras minúsculas;
 * remover espaços no início e o no fim do campo;
+
+O notebook usado para tratar as músicas do spotify é o notebook [tratamento_spotify.ipynb](./tratamento_spotify_dataset.ipynb). E o notebook utilizado para tratar os demais dados, juntar todas as informações e inserir no Neo4j é o notebook [trilhas_sonoras.ipynb](./trilhas_sonoras.ipynb).
 
 ### Modelagem em Grafo e Relacionamentos
 
