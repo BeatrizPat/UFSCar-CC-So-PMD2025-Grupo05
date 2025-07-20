@@ -181,11 +181,23 @@ Por fim, chegamos no seguinte esquema:
 
 ---
 
+### Implementação e execução de Consultas
+
+Para consultar os dados foi implementado um notebook separado do tratamento, por tanto, as consultas também foram feitas utilizando Apache Spark.
+
+Podemos ver um exemplo de como ficou a implementação e exibição da resposta referente a primeira consulta:
+
+<img width="1119" height="679" alt="ksnip_20250719-211628" src="https://github.com/user-attachments/assets/f202ede4-4c44-4c10-be1e-7961eaf471de" />
+
+Algo que pode-se observar é que esse modo de fazer consultas permite alterar seus [parâmetros com facilidade, usando interpolação de string e variáveis, além de mostrar como também seria simples integrar o neo4j em outras aplicações.
+
+Outro exemplo de consulta é a seguinte:
+
+<img width="1120" height="667" alt="ksnip_20250719-211557" src="https://github.com/user-attachments/assets/12ceaf97-0427-48d3-bf39-a03a536f35f6" />
+
+Diferentemente do exemplo anterior, neste é possível observar algumas inconsistências na resposta, o que indica que alguns problemas não foram tratados durante o pré-processamento. Neste caso em específico, acreditamos que o problema foi gerado pela relação entre os datasets se basear no nome da música e filme da trilha sonora, assim, músicas com nomes semelhantes foram relacionados com filmes erroneamente, e vice-versa também.
+
 ### Resultados
-
-Os resultados obtidos demonstraram que há uma grande vantagem em conectar as informações por meio de um modelo em grafo para recomendações. Essa representação possibilita consultas como "Quais músicas estão presentes nos filmes do Christopher Nolan?", "Quais são as emoções mais associadas aos filmes de determinado diretor?" ou "Quais as músicas recomendadas com base no filme "The Wolf of Wall Street"?"
-
-Essa modelagem em grafo mostrou-se altamente flexível e eficiente, permitindo consultas complexas com baixo custo computacional, o que seria mais custoso e menos intuitivo em bancos relacionais. No entanto, foram encontrados desafios na parte da injeção de dados do Apache Spark para o Neo4J.
 
 Nosso esquema resultou em 62K nós e 105K de relacionamentos, o que possibilitou a construção de recomendações mais ricas, como sugerir músicas com base em diretores, gêneros cinematográficos, emoções predominantes ou até mesmo por similaridade entre trilhas sonoras. Além disso, foi possível identificar artistas frequentemente associados a determinados estilos de filmes ou diretores.
 
@@ -206,3 +218,10 @@ O pré-processamento dos dados também foi uma etapa trabalhosa, pois lidamos co
 
 ---
 
+### Conclusão
+
+Os resultados obtidos demonstraram que há uma grande vantagem em conectar as informações por meio de um modelo em grafo para recomendações. Essa representação possibilita consultas como "Quais músicas estão presentes nos filmes do Christopher Nolan?", "Quais são as emoções mais associadas aos filmes de determinado diretor?" ou "Quais as músicas recomendadas com base no filme "The Wolf of Wall Street"?"
+
+Essa modelagem em grafo mostrou-se altamente flexível e eficiente, permitindo consultas complexas com baixo custo computacional, o que seria mais custoso e menos intuitivo em bancos relacionais. No entanto, foram encontrados desafios na parte da injeção de dados do Apache Spark para o Neo4J. Ainda sim, podemos confirmar que é possível relacionar datasets que não tenham nenhuma relação previamente, mas se atentando para identificar a melhor forma de relacionar os dados. Como por exemplo, usar além do nome do filme/música, mais algum campo para identificar o dado.
+
+---
